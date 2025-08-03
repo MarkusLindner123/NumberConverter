@@ -4,22 +4,37 @@ on:
   push:
     branches:
       - main
+  # Ermöglicht manuelles Ausführen des Workflows über die Actions-UI
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 
+      - name: Checkout your repository
         uses: actions/checkout@v3
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build with Vite
         run: npm run build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          path: './dist' # Der Ordner, der bereitgestellt werden soll
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
