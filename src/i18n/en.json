@@ -1,0 +1,16 @@
+{
+    "title": "Number Converter",
+    "number_label": "Number:",
+    "input_base_label": "Input Base:",
+    "output_base_label": "Output Base:",
+    "calculation_steps_title": "Calculation Steps:",
+    "decimal_conversion_step": "--- Step 1: Convert to Decimal (Power Series) ---",
+    "result_decimal_step": "The result in decimal is:",
+    "target_base_conversion_step": "--- Step 2: Convert to Target Base (Horner's Scheme) ---",
+    "reversed_remainders_step": "The remainders in reverse order:",
+    "invalid_input": "Invalid input for this base",
+    "conversion_error": "Error during conversion",
+    "zero_conversion_step": "The number is 0. No further steps needed.",
+    "remainder": "Remainder",
+    "result_label": "Result:"
+  }

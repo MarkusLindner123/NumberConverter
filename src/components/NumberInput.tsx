@@ -8,7 +8,7 @@ interface InputProps {
   onChange: (value: string) => void;
 }
 
-export const Input: React.FC<InputProps> = ({
+export const NumberInput: React.FC<InputProps> = ({
   label,
   value,
   type = "text",

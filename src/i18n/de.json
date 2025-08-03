@@ -1,0 +1,16 @@
+{
+    "title": "Zahlenkonverter",
+    "number_label": "Zahl:",
+    "input_base_label": "Ausgangs Basis:",
+    "output_base_label": "Ergebnis Basis:",
+    "calculation_steps_title": "Umrechnungsschritte:",
+    "decimal_conversion_step": "--- Schritt 1: Umwandlung in Dezimal (Potenzreihe) ---",
+    "result_decimal_step": "Das Ergebnis in Dezimal ist:",
+    "target_base_conversion_step": "--- Schritt 2: Umwandlung in die Zielbasis (Horner-Schema) ---",
+    "reversed_remainders_step": "Die Reste in umgekehrter Reihenfolge:",
+    "invalid_input": "Ungültige Eingabe für diese Basis",
+    "conversion_error": "Fehler bei der Umrechnung",
+    "zero_conversion_step": "Die Zahl ist 0. Keine weiteren Schritte nötig.",
+    "remainder": "Rest",
+    "result_label": "Ergebnis:"
+  }

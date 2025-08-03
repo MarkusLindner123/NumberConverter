@@ -3,12 +3,15 @@ import React from "react";
 
 interface ResultProps {
   value: string;
+  label: string; // Neuer Prop für das Label
 }
 
-export const Result: React.FC<ResultProps> = ({ value }) => {
+export const Result: React.FC<ResultProps> = ({ value, label }) => {
   return (
     <div>
-      <p>Ergebnis: {value}</p>
+      <p>
+        {label} {value}
+      </p>
     </div>
   );
 };
