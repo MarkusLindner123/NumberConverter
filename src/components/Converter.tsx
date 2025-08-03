@@ -29,6 +29,23 @@ export function Converter({ translations }: ConverterProps) {
     steps: [],
   });
 
+  // Neue Funktion zum Formatieren der Zahlen
+  const formatNumber = (numString: string, groupSize: number = 4): string => {
+    if (!numString) return "";
+
+    // Die Zahl wird vom Ende her in Gruppen aufgeteilt
+    const reversedString = numString.split("").reverse().join("");
+    const parts = [];
+    for (let i = 0; i < reversedString.length; i += groupSize) {
+      parts.push(reversedString.substring(i, i + groupSize));
+    }
+
+    return parts
+      .reverse()
+      .map((part) => part.split("").reverse().join(""))
+      .join(" ");
+  };
+
   const handleConversion = () => {
     try {
       const { inputValue, inputBase, outputBase } = state;
@@ -96,10 +113,11 @@ export function Converter({ translations }: ConverterProps) {
       }
 
       const convertedValue = remainderList.reverse().join("");
+      const formattedResult = formatNumber(convertedValue);
 
       setState((prev) => ({
         ...prev,
-        result: convertedValue,
+        result: formattedResult,
         steps: steps,
       }));
     } catch (error) {
@@ -134,8 +152,7 @@ export function Converter({ translations }: ConverterProps) {
         onChange={(value) => setState({ ...state, outputBase: value })}
       />
       <Result value={state.result} label={translations.result_label} />
-      <CalculationSteps steps={state.steps} translations={translations} />{" "}
-      {/* Weiterleitung der translations-Prop */}
+      <CalculationSteps steps={state.steps} translations={translations} />
     </div>
   );
 }
