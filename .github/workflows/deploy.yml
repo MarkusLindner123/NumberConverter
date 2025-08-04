@@ -1,4 +1,3 @@
-```yaml
 name: Deploy to gh-pages
 
 on:
@@ -48,4 +47,3 @@ jobs:
           git push origin gh-pages-temp:gh-pages --force
           git checkout main
           git branch -D gh-pages-temp
-```
