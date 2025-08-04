@@ -1,4 +1,3 @@
-```yaml
 name: Deploy to gh-pages
 
 on:
@@ -9,43 +8,23 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up Git
+      - name: Copy build folder to temporary directory
         run: |
-          git config user.name "GitHub Action"
-          git config user.email "action@github.com"
-
-      - name: Debug directory structure
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Listing repository contents:"
-          ls -la
-          echo "Checking build folder:"
-          if [ -d "build" ]; then
-            echo "Build directory exists. Contents:"
-            ls -la build/
-          else
-            echo "Error: build directory does not exist"
-            exit 1
-          fi
-          if [ -z "$(ls -A build)" ]; then
-            echo "Error: build directory is empty"
-            exit 1
-          fi
+          mkdir -p temp
+          cp -r build/* temp/
 
       - name: Deploy to gh-pages
-        run: |
-          git checkout --orphan gh-pages-temp
-          rm -rf *
-          cp -r build/* .
-          git add .
-          git commit -m "Deploy build folder to gh-pages"
-          git push origin gh-pages-temp:gh-pages --force
-          git checkout main
-          git branch -D gh-pages-temp
-```
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: temp
+          publish_branch: gh-pages
+          force_orphan: true
