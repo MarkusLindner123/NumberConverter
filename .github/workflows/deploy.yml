@@ -1,3 +1,4 @@
+```yaml
 name: Deploy to gh-pages
 
 on:
@@ -19,6 +20,24 @@ jobs:
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
 
+      - name: Debug directory structure
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Listing repository contents:"
+          ls -la
+          echo "Checking build folder:"
+          if [ -d "build" ]; then
+            echo "Build directory exists. Contents:"
+            ls -la build/
+          else
+            echo "Error: build directory does not exist"
+            exit 1
+          fi
+          if [ -z "$(ls -A build)" ]; then
+            echo "Error: build directory is empty"
+            exit 1
+          fi
+
       - name: Deploy to gh-pages
         run: |
           git checkout --orphan gh-pages-temp
@@ -29,3 +48,4 @@ jobs:
           git push origin gh-pages-temp:gh-pages --force
           git checkout main
           git branch -D gh-pages-temp
+```
