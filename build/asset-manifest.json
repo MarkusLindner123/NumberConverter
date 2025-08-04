@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/NumberConverter/static/css/main.7c55d10f.css",
+    "main.js": "/NumberConverter/static/js/main.89a03ff9.js",
+    "index.html": "/NumberConverter/index.html",
+    "main.7c55d10f.css.map": "/NumberConverter/static/css/main.7c55d10f.css.map",
+    "main.89a03ff9.js.map": "/NumberConverter/static/js/main.89a03ff9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7c55d10f.css",
+    "static/js/main.89a03ff9.js"
+  ]
+}
